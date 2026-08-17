@@ -647,6 +647,32 @@ In the example above, we've setup our custom theme in our configuration and poin
 
 The theme comes with a set of helpers which enable you to interact with and modify colors. The helper file can be accessed via `require("onedarkpro.helpers")`.
 
+**Generating and using extras**
+
+OneDarkPro comes with themes for a number of [applications](https://github.com/olimorris/onedarkpro.nvim/tree/main/extras) that can be generated with `:OneDarkProExtras`. However, if you wish to generate them programmatically, you can also do:
+
+```sh
+nvim --headless +'OneDarkProExtras' +qall
+```
+
+Depending on your setup, this will generate extras to `~/.cache/nvim/onedarkpro/extras`. If you use a tool such as [dotbot](https://github.com/anishathalye/dotbot), then you can reference these extras with:
+
+```yaml
+- defaults:
+    link:
+        create: true
+        force: true
+        relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.config/ghostty/themes:
+        path: ~/.cache/nvim/onedarkpro/extras/ghostty
+    ~/.config/opencode/themes:
+        path: ~/.cache/nvim/onedarkpro/extras/opencode
+```
+
 **Using colors from a theme**
 
 It can be useful to access a theme's colors for use within other plugins (such as your statusline) after its loaded. For this, the `get_colors` helper can be used:
